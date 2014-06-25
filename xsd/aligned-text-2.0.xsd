@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2014 
+  
+  The Alpheios Project
+  http://alpheios.net
+  
+  Tufts University
+  
+  Ycan redistribute it and/or modify it under the terms of the GNU General 
+  Public License as published by the Free Software Foundation, either version 3 
+  of the License, or (at your option) any later version.
+  
+  This file is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License <http://www.gnu.org/licenses/> for more details.
+-->
+
+<!--
+  Schema describing text alignment
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xml="http://www.w3.org/XML/1998/namespace"
+  attributeFormDefault="unqualified" xmlns:align="http://alpheios.net/namespaces/aligned-text/2.0"
+  xmlns:prov="http://www.w3.org/ns/prov#" xmlns:alphdt1="http://alpheios.net/namespaces/datatypes/1"
+  targetNamespace="http://alpheios.net/namespaces/aligned-text/2.0" elementFormDefault="qualified"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
+
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+  <xs:import namespace="http://alpheios.net/namespaces/datatypes/1" schemaLocation="datatypes-1.0.xsd"/>  
+
+  <xs:annotation>
+    <xs:documentation>Structure of aligned translation data</xs:documentation>
+  </xs:annotation>
+
+  <!-- Top-level element -->
+  <xs:element name="aligned-text">
+    <xs:annotation>
+      <xs:documentation>
+        Alignment data for a set of beads of text
+          @document_uri uri identifier for this document
+          @version optional version of the alignment schema used
+          comment = optional comments
+          link = optional links to related documents
+          citeprefix = optional list of prefix definitions for cite references used in the document
+          bead = alignment beads in the text
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+        <xs:element name="comment" type="xs:anyType" maxOccurs="unbounded" minOccurs="0"/>
+        <xs:element name="link" type="alphdt1:LinkType" maxOccurs="unbounded" minOccurs="0">
+          <xs:annotation></xs:annotation>
+        </xs:element>
+          <xs:element name="bead" type="align:BeadType" maxOccurs="unbounded" minOccurs="1"/>
+        </xs:choice>
+      <xs:attribute name="document_uri" type="xs:anyURI" use="required">
+        <xs:annotation>
+          <xs:documentation>Specifies a unique uri for this alignment document</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="version" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>Specifies the version of the alignment schema used for this document</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="citeprefix" type="alphdt1:CitePrefixType">
+        <xs:annotation>
+          <xs:documentation>
+            An optional list of prefix definitions for cite references in this document
+          </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- Bead -->
+  <xs:complexType name="BeadType">
+    <xs:annotation>
+      <xs:documentation>
+        Alignment data for a single chunk of text
+        @n identifier for word set
+        @type optional specifier of the semantic classification of the wordset
+        @one-to-one optional boolean flag to indicate if one-to-one alignment
+        Typically consists of two word sets:
+          wds[@n='ws1'] = words from original text
+          wds[@n='ws2'] = words from translated text
+        Optional comments may be interspersed in the word sets
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="comment" type="xs:anyType"/>
+      <xs:element name="wds" type="align:WordSetType"/>
+    </xs:choice>
+    <xs:attribute name="n" type="alphdt1:NSeqType" use="required"/>
+    <xs:attribute name="one-to-one" type="xs:boolean"/>
+    <xs:attribute name="type" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          Semantic classification of this bead (e.g. 'sentence', 'verse', etc.)
+          May be a URI representing a term in a controlled vocabulary.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Set of words from a language -->
+  <xs:complexType name="WordSetType">
+    <xs:annotation>
+      <xs:documentation>
+        Set of words from a language
+          @n word set identifier (required)
+          @xml:lang language code for this set of words (required)
+          @dir optional text direction for this set of words (default is ltr)
+          @cite optional cite reference for the source of the words
+          comment = optional comments
+          w = words
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="comment" type="xs:anyType"/>
+      <xs:element name="w" type="align:WordType"/>
+    </xs:choice>
+    <xs:attribute name="n" type="align:WordSetIdType" use="required"/>
+    <xs:attribute ref="xml:lang" use="required"/>
+    <xs:attribute name="dir" type="alphdt1:LanguageDirType" use="optional"/>
+    <xs:attribute name="cite" type="alphdt1:CiteType" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies one or more canonical citation references for the group of words 
+          (e.g. the CTS urn for the work, edition and passage and subreference from 
+          which it comes).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- Single word -->
+  <xs:complexType name="WordType">
+    <xs:annotation>
+      <xs:documentation>
+        Single word
+          @n = word id
+          @xml:lang optional language code for this word (overrides attribute on parent)
+          @dir optional text direction for this set of words (overrides attribute on parent)
+          @cite optional cite reference for the source of the words
+          text = the actual word
+          comment = optional comments
+          refs = list of aligned words
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="text" type="xs:string"/>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="comment" type="xs:anyType"/>
+        <xs:element name="refs" type="align:RefType"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="n" use="required" type="align:WordIdType"/>
+    <xs:attribute ref="xml:lang" use="optional"/>
+    <xs:attribute name="dir" type="alphdt1:LanguageDirType" use="optional"/>
+    <xs:attribute name="cite" type="alphdt1:CiteType" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          Specifies a canonical citation reference for the word  
+          (e.g. the CTS urn for the work, edition and passage and subreference 
+          from which it comes).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- List of word references -->
+  <xs:complexType name="RefType" mixed="true">
+    <xs:annotation>
+      <xs:documentation>
+        List of word references
+          @nrefs = list of word ids
+          @wref = identifier of the wds element (word set) to which the 
+                  word ids in the nrefs attribute refers
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="nrefs" type="align:WordListType" use="required"/>
+    <xs:attribute name="wref" type="align:WordSetIdType" use="required"/>
+  </xs:complexType>
+  
+  <!-- Word identifier attribute -->
+  <xs:simpleType name="WordIdType">
+    <xs:annotation>
+      <xs:documentation>
+        Type of word id attribute: &lt;sentenceNumber&gt;-&lt;wordNumber&gt;
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <!--  <xs:pattern value="[1-9][0-9]*[a-z]?-[1-9][0-9]*[a-z]?"/> -->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Word list attribute -->
+  <xs:simpleType name="WordListType">
+    <xs:annotation>
+      <xs:documentation>
+        Type of word list attribute: space-separated list of word ids
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[^ ]+( [^ ]+)*"/>
+      <!--  <xs:pattern value=
+        "[1-9][0-9]*[a-z]?-[1-9][0-9]*[a-z]?( [1-9][0-9]*[a-z]?-[1-9][0-9]*[a-z]?)*"
+      /> -->
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- Wordset identifier attribute -->
+  <xs:simpleType name="WordSetIdType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+</xs:schema>
