@@ -21,9 +21,9 @@
   Schema describing text alignment
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-  xmlns:xml="http://www.w3.org/XML/1998/namespace"
-  attributeFormDefault="unqualified" xmlns:align="http://alpheios.net/namespaces/aligned-text/2.0"
-  xmlns:prov="http://www.w3.org/ns/prov#" xmlns:alphdt1="http://alpheios.net/namespaces/datatypes/1"
+  xmlns:xml="http://www.w3.org/XML/1998/namespace" attributeFormDefault="unqualified" 
+  xmlns:align="http://alpheios.net/namespaces/aligned-text/2.0"
+  xmlns:alphdt1="http://alpheios.net/namespaces/datatypes/1"
   targetNamespace="http://alpheios.net/namespaces/aligned-text/2.0" elementFormDefault="qualified"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
 
@@ -189,7 +189,7 @@
   <xs:simpleType name="WordIdType">
     <xs:annotation>
       <xs:documentation>
-        Type of word id attribute: &lt;sentenceNumber&gt;-&lt;wordNumber&gt;
+        Type of word id attribute: &lt;beadNumber&gt;-&lt;wordNumber&gt;
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
