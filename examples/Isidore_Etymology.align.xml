@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<aligned-text xmlns="http://alpheios.net/namespaces/aligned-text/2.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://alpheios.net/namespaces/aligned-text/2.0 ../xsd/aligned-text-2.0.xsd"
+ document_uri="http://data.perseus.org/collections/urn:cite:perseus:align.1.1"
+ citeprefix="doc1: http://penelope.uchicago.edu/Thayer/L/Roman/Texts/Isidore/1*.html 
+             doc2: http://pot-pourri.fltr.ucl.ac.be/files/AClassftp/TEXTES/ISIDORUS/Etymologie/B1N8PWGetQy.pdf
+            "
+ version="2.0">
+    <comment class="title">
+        Sample Alignment of a sentence from Isidore's Etymologies to show 
+        use of new schema for alignment of multi-lingual text from a source document outside Perseus. 
+    </comment>
+    <comment class="stdabbrev"></comment>
+    <link rel="http://www.w3.org/ns/prov#has_provenance" href="provenance-URI"/>
+    <link rel="http://www.w3.org/ns/prov#has_anchor" href="target-URI"/>  
+    <bead n="1" type="verse">
+        <wds n="ws1" cite="doc1:#21" xml:lang="la" dir="ltr">
+            <w n="1-1" cite="doc1:#21" dir="ltr">
+                <text>A diple-periestigmene-sign (a V pointing to the right, with a dot on either side of the point) </text>
+                <refs nrefs="1-1" wref="ws2"/>
+            </w>
+            <w n="1-2" cite="doc1:#21@diple[3]">
+                <text>Diple</text>
+                <refs nrefs="1-2 1-3" wref="ws2"/>
+            </w>
+            <w n="1-3" cite="doc1:#21@περιεστιγμένη[1]" xml:lang="grc">
+                <text>περιεστιγμένη</text>
+                <refs nrefs="1-4" wref="ws2"/>
+            </w>
+            <w n="1-4" cite="doc2:#21@id[3]">
+                <text>id</text>
+                <refs nrefs="1-6" wref="ws2"/>
+            </w>
+            <w n="1-5" cite="doc1:#21@est[9]">
+                <text>est</text>
+                 <refs nrefs="1-7" wref="ws2"/>
+            </w>
+            <w n="1-6" cite="doc1:#21@cum[5]">
+                <text>cum</text>
+                <refs nrefs="1-9" wref="ws2"/>
+            </w>
+            <w n="1-7" cite="doc1:#21@geminis[1]">
+                <text>geminis</text>
+                <refs nrefs="1-10" wref="ws2"/>
+            </w>
+            <w n="1-8" cite="doc1:#21@punctis[1]">
+                <text>punctis</text>
+                <refs nrefs="1-11" wref="ws2"/>
+            </w>
+        </wds>
+        <wds n="ws2" cite="doc2:1.21.15" xml:lang="en" dir="ltr">
+            <w n="1-1" cite="doc2:1.21.15">
+                <text>A diple-periestigmene-sign (a V pointing to the right, with a dot on either side of the point)</text>
+                <refs nrefs="1-1" wref="ws1"/>
+            </w>
+            <w n="1-2" cite="doc2:1.21.15@the[1]">
+                <text>The</text>
+                <refs nrefs="1-2" wref="ws1"/>
+            </w>
+            <w n="1-3" cite="doc2:1.21.15@diple[1]" xml:lang="lat">
+                <text>diple</text>
+                <refs nrefs="1-2" wref="ws1"/>
+            </w>
+            <w n="1-4" cite="doc2:1.21.15@περιεστιγμένη[1]" xml:lang="grc">
+                <text>περιεστιγμένη</text>
+                <refs nrefs="1-3" wref="ws1"/>
+            </w>
+            <w n="1-5" cite="doc2:1.21.15@,[1]">
+                <text>,</text>
+            </w>
+             <w n="1-6" cite="doc2:1.21.15@that[1]">
+                <text>that</text>
+                <refs nrefs="1-4" wref="ws1"/>
+            </w>
+             <w n="1-7" cite="doc2:1.21.15@is[1]">
+                <text>is</text>
+                <refs nrefs="1-5" wref="ws1"/>
+            </w>
+            <w n="1-8" cite="doc2:1.21.15@,[2]">
+                <text>,</text>
+            </w>
+            <w n="1-9" cite="doc2:1.21.15@with[1]">
+                <text>with</text>
+                <refs nrefs="1-6" wref="ws1"/>
+            </w>
+             <w n="1-10" cite="doc2:1.21.15@two[1]">
+                <text>two</text>
+                <refs nrefs="1-7" wref="ws1"/>
+            </w>
+             <w n="1-11" cite="doc2:1.21.15@points[1]">
+                <text>points</text>
+                <refs nrefs="1-8" wref="ws1"/>
+            </w>
+        </wds>
+        
+    </bead>
+</aligned-text>
