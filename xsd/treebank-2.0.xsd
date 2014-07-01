@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2014 
+  
+  The Alpheios Project
+  http://alpheios.net
+  
+  Perseus Digital Library, Tufts University
+  http://www.perseus.tufts.edu
+  
+  Ycan redistribute it and/or modify it under the terms of the GNU General 
+  Public License as published by the Free Software Foundation, either version 3 
+  of the License, or (at your option) any later version.
+  
+  This file is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License <http://www.gnu.org/licenses/> for more details.
+-->
+
+<!--
+  Treebank schema version 2.0
+-->
+<xs:schema 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:alphdt1="http://alpheios.net/namespaces/datatypes/1"
+	xmlns:treebank="http://data.perseus.org/ns/syntax/treebank/2"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" 
+    vc:minVersion="1.1" 
+    targetNamespace="http://data.perseus.org/ns/syntax/treebank/2"
+    elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" 
+		schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+	<xs:import namespace="http://alpheios.net/namespaces/datatypes/1" 
+		schemaLocation="datatypes-1.0.xsd"/>  
+	<xs:import namespace="http://alpheios.net/rdfvocab/inflections/1" 
+		schemaLocation="alph-infl-att.xsd"/>  
+	
+	<xs:include schemaLocation=""></xs:include>
+	
+	<xs:element name="treebank">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="link" type="alphdt1:LinkType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							Use to specify links to provenance information and format descriptors.
+							Where possible use controlled vocabulary to type the link relations:
+							For provenance documents:
+								http://www.w3.org/ns/prov#has_provenance
+								http://www.w3.org/ns/prov#has_anchor
+							For format descriptors:
+								http://purl.org/dc/terms/format
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="comment" type="xs:anyType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+							May be used to add document level comments and metadata.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="sentence" type="treebank:sentenceType" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+						Version of the treebank schema used. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute ref="xml:lang" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+						Language code for the text in this document. 
+						May be overridden at the sentence or word.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="dir" type="alphdt1:LanguageDirType" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+						Text direction for the text in this document. 
+						May be overridden at the sentence or word.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="document_uri" type="xs:anyURI" use="required">
+				<xs:annotation>
+					<xs:documentation>Specifies a unique uri identifier for this treebank document</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="prefix" type="alphdt1:CitePrefixType">
+				<xs:annotation>
+					<xs:documentation>
+						An optional list of prefix definitions for cite references and controlled vocabulary 
+						terms used in attribute values in this document
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="sentenceType">
+		<xs:sequence>
+			<xs:element name="link" type="alphdt1:LinkType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Use to specify links to provenance or format information for this sentence if it
+						differs from that of the full document.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:anyType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						May be used to add sentence-level comments and metadata.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="word" type="treebank:wordType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="n" type="alphdt1:NSeqType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Sequential identifier for the sentence
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cite" type="alphdt1:CiteType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Cite reference for the sentence.		
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute ref="xml:lang" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Language code for the text in this sentence. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dir" type="alphdt1:LanguageDirType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Text direction for the text in this sentence. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		
+	</xs:complexType>
+
+	<xs:complexType name="wordType" mixed="true">
+		<xs:sequence>
+			<xs:element name="link" type="alphdt1:LinkType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Use to specify links to provenance information for this word if it
+						differs from that of the sentence or full document.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:anyType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						May be used to add word-level comments and metadata.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>	
+		</xs:sequence>
+		<xs:attribute name="n" type="treebank:WordIdType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Sequential identifier for the word
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cite" type="alphdt1:CiteType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Cite reference for the word
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lemma" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					String representation of the lemma of this word 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lemma_uri" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					URI identifier for for the lemma of this word
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="head" type="treebank:HeadType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The @n value of the word on which this word depends.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute ref="xml:lang" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Language code for the text in this word. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dir" type="alphdt1:LanguageDirType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Text direction for the text in this word. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="relation" type="treebank:RelationType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Relationship(s) between the word and its head. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##any" processContents="lax"/>
+	</xs:complexType>
+
+	<!-- Word identifier attribute -->
+	<xs:simpleType name="WordIdType">
+		<xs:annotation>
+			<xs:documentation>
+				Type of word id attribute: &lt;sentenceNumber&gt;-&lt;wordNumber&gt;
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-9]+-[1-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HeadType">
+		<xs:annotation>
+			<xs:documentation>
+				Head attribute type. 
+				- value of -1 indicates the head is not yet set
+				- value of 0 indicates the head is the root
+				- positive non-zero value identifies the word id of the head word
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-9]+-[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="RelationType">
+		<xs:annotation>
+			<xs:documentation>Relation attribute type. 
+				May be set to a space-separated list of URIs or SafeCURIE to allow for
+				simple strings or controlled vocabulary terms specified via full uris or prefixes
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="alphdt1:URIorSafeCURIEsType"/>
+	</xs:simpleType>
+	
+	
+</xs:schema>
