@@ -135,7 +135,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:attribute name="charset" type="xs:string"/>
-        <xs:attribute ref="xlink:type"/>
+        <xs:attribute ref="xlink:type" fixed="simple"/>
         <xs:attribute ref="xlink:href"/>
         <xs:attribute ref="xlink:role"/>
         <xs:attribute ref="xlink:title"/>
