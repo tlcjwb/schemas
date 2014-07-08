@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <aligned-text xmlns="http://alpheios.net/namespaces/aligned-text/2.0"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
  xsi:schemaLocation="http://alpheios.net/namespaces/aligned-text/2.0 ../xsd/aligned-text-2.0.xsd"
  document_uri="http://data.perseus.org/collections/urn:cite:perseus:align.1.1"
  citeprefix="doc1: http://penelope.uchicago.edu/Thayer/L/Roman/Texts/Isidore/1*.html 
@@ -12,12 +13,12 @@
         use of new schema for alignment of multi-lingual text from a source document outside Perseus. 
     </comment>
     <comment class="stdabbrev"></comment>
-    <link rel="http://www.w3.org/ns/prov#has_provenance" href="provenance-URI"/>
-    <link rel="http://www.w3.org/ns/prov#has_anchor" href="target-URI"/>  
+    <link xlink:role="http://www.w3.org/ns/prov#has_provenance" xlink:href="provenance-URI"/>
+    <link xlink:role="http://www.w3.org/ns/prov#has_anchor" xlink:href="target-URI"/>  
     <bead n="1" type="verse">
         <wds n="ws1" cite="doc1:#21" xml:lang="la" dir="ltr">
             <w n="1-1" cite="doc1:#21" dir="ltr">
-                <text>A diple-periestigmene-sign (a V pointing to the right, with a dot on either side of the point) </text>
+                <text>&#x2E16;</text>
                 <refs nrefs="1-1" wref="ws2"/>
             </w>
             <w n="1-2" cite="doc1:#21@diple[3]">

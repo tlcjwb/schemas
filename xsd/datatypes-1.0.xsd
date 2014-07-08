@@ -4,6 +4,7 @@
     attributeFormDefault="unqualified" 
     targetNamespace="http://alpheios.net/namespaces/datatypes/1"
     xmlns:alphdt1="http://alpheios.net/namespaces/datatypes/1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
     vc:minVersion="1.1" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"> 
 
 
@@ -16,6 +17,7 @@
         </xs:documentation>
     </xs:annotation>
     
+    <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/1999/xlink.xsd"/>  
     
     <!-- Simple sequential element identifier attribute -->
     <xs:simpleType name="NSeqType">
@@ -119,7 +121,7 @@
     <xs:complexType name="LinkType">
         <xs:annotation>
             <xs:documentation>
-                Taken from http://www.w3.org/MarkUp/SCHEMA/xhtml-rdfa-2.xsd xhtml.link.type
+                Type for modeling external links.
             </xs:documentation>
         </xs:annotation>
         <xs:group ref="alphdt1:LinkContentType"/>
@@ -129,15 +131,14 @@
     <xs:attributeGroup name="LinkAttList">
         <xs:annotation>
             <xs:documentation>
-                Taken from http://www.w3.org/MarkUp/SCHEMA/xhtml-rdfa-2.xsd xhtml.link.attlist
+                Subset of Xlink Attributes for simple xlink types
             </xs:documentation>
         </xs:annotation>
         <xs:attribute name="charset" type="xs:string"/>
-        <xs:attribute name="href" type="xs:anyURI"/>
-        <xs:attribute name="hreflang" type="alphdt1:LanguageCodeType"/>
-        <xs:attribute name="type" type="xs:string"/>
-        <xs:attribute name="media" type="xs:string"/>
-        <xs:attribute name="rel" type="xs:string"/>
+        <xs:attribute ref="xlink:type"/>
+        <xs:attribute ref="xlink:href"/>
+        <xs:attribute ref="xlink:role"/>
+        <xs:attribute ref="xlink:title"/>
     </xs:attributeGroup>
     
     <!-- Language code attribute -->

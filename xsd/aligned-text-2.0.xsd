@@ -28,7 +28,8 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
 
   <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
-  <xs:import namespace="http://alpheios.net/namespaces/datatypes/1" schemaLocation="datatypes-1.0.xsd"/>  
+  <xs:import namespace="http://alpheios.net/namespaces/datatypes/1" schemaLocation="datatypes-1.0.xsd"/>
+
 
   <xs:annotation>
     <xs:documentation>Structure of aligned translation data</xs:documentation>

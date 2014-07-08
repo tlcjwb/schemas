@@ -1,6 +1,7 @@
 <treebank xmlns="http://data.perseus.org/ns/syntax/treebank/2"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:alph="http://alpheios.net/rdfvocab/inflections/1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:sgdt="http://data.perseus.org/rdfvocab/ns/syntax/smythgrammar/1"
     xsi:schemaLocation="http://data.perseus.org/ns/syntax/treebank/2 ../xsd/treebank-2.0.xsd"
     version="2.0" 
@@ -11,12 +12,12 @@
          aldt:http://data.perseus.org/rdfvocab/syntax/aldt#"
     >
 
-    <link rel="http://www.w3.org/ns/prov#has_provenance" href="provenance-URI"/>
-    <link rel="http://www.w3.org/ns/prov#has_anchor" href="target-URI"/>
-    <link rel="http://purl.org/dc/terms/format"
-        href="http://data.perseus.org/tagsets/syntax/aldt.json"/>
-    <link rel="http://purl.org/dc/terms/format"
-        href="http://data.perseus.org/tagsets/syntax/sg.json"/>
+    <link xlink:role="http://www.w3.org/ns/prov#has_provenance" xlink:href="provenance-URI"/>
+    <link xlink:role="http://www.w3.org/ns/prov#has_anchor" xlink:href="target-URI"/>
+    <link xlink:role="http://purl.org/dc/terms/format"
+        xlink:href="http://data.perseus.org/tagsets/syntax/aldt.json"/>
+    <link xlink:role="http://purl.org/dc/terms/format"
+        xlink:href="http://data.perseus.org/tagsets/syntax/sg.json"/>
     <comment class="title"> Sample treebank of Herodotus Histories (from Vanessa Gorman's treebank)
         to show use of use of new schema </comment>
     <sentence n="1" cite="doc:1.1">

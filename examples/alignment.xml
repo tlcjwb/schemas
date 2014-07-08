@@ -2,6 +2,7 @@
 <aligned-text xmlns="http://alpheios.net/namespaces/aligned-text/2.0"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://alpheios.net/namespaces/aligned-text/2.0 ../xsd/aligned-text-2.0.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
  document_uri="http://data.perseus.org/collections/urn:cite:perseus:align.1.1"
  citeprefix="doc1: urn:cts:greekLit:tlg059.tlg002.perseus-grc1: 
              doc2: urn:cts:greekLit:tlg059.tlg002.perseus-eng1:
@@ -12,8 +13,8 @@
         use of new schema for 3 language alignment
     </comment>
     <comment class="stdabbrev">Plat. Apol. 17a</comment>
-    <link rel="http://www.w3.org/ns/prov#has_provenance" href="provenance-URI"/>
-    <link rel="http://www.w3.org/ns/prov#has_anchor" href="target-URI"/>  
+    <link xlink:role="http://www.w3.org/ns/prov#has_provenance" xlink:href="provenance-URI"/>
+    <link xlink:role="http://www.w3.org/ns/prov#has_anchor" xlink:href="target-URI"/>  
     <bead n="1" type="verse">
         <wds n="ws1" cite="doc1:17a" xml:lang="greek" dir="ltr">
             <w n="1-1" cite="doc1:17a@ὅτι[1]" dir="ltr">
