@@ -208,6 +208,15 @@
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="form_uri" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					URI identifier for for the morphological form of this word
+					(Note if supplied, can eliminate the need for individual morphological
+					attributes)
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="head" type="treebank:HeadType" use="optional">
 			<xs:annotation>
 				<xs:documentation>
@@ -289,6 +298,15 @@
 			<xs:annotation>
 				<xs:documentation>
 					URI identifier for for the lemma of this token
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="form_uri" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					URI identifier for for the morphological form of this token
+					(Note if supplied, can eliminate the need for individual morphological
+					attributes)
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
