@@ -106,6 +106,9 @@
 	</xs:element>
 
 	<xs:complexType name="sentenceType">
+		<xs:annotation>
+			<xs:documentation>Container for a sentence.</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="link" type="alphdt1:LinkType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
@@ -123,6 +126,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="word" type="treebank:wordType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="atok" type="treebank:tokenType" minOccurs="0" maxOccurs="unbounded"/> 
 		</xs:sequence>
 		<xs:attribute name="n" type="alphdt1:NSeqType" use="required">
 			<xs:annotation>
@@ -156,6 +160,9 @@
 	</xs:complexType>
 
 	<xs:complexType name="wordType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Container for a word token in a sentence. The token should actually appear in the sentence.</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="link" type="alphdt1:LinkType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
@@ -231,6 +238,115 @@
 		</xs:attribute>
 		<xs:anyAttribute namespace="##any" processContents="lax"/>
 	</xs:complexType>
+
+
+	<xs:complexType name="tokenType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>
+				Generic container for a token that isn't physically present in the sentence but which can (or must) be supplied in order to produce
+				a complete syntactic analysis of a sentence. This might, for example, be an ellided node, an implied to a word from another sentence,
+			    a missing word in the extent physical representation of the sentence in the source material, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="link" type="alphdt1:LinkType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Use to specify links to provenance information for this token if it
+						differs from that of the sentence or full document.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:anyType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						May be used to add token-level comments and metadata.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>	
+		</xs:sequence>
+		<xs:attribute name="n" type="treebank:WordIdType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Sequential identifier for the token
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Semantic type of the token, preferably a URI reference to a controlled vocabulary term.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lemma" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					String representation of the lemma of this token 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lemma_uri" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					URI identifier for for the lemma of this token
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="insert_at" type="treebank:WordIdType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					The insertion point (within the sentence) for the token in the form of the identifier of the
+					word or token at which it should be inserted. The default is to insert the token before the 
+					word or token identified here, but this should obey the insertion direction supplied in @insert_dir.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="insert_dir" fixed="before">
+			<xs:annotation>
+				<xs:documentation>
+					The direction from the insertion point supplied in @insert_at that the token should be inserted 
+					(i.e. before @insert_at or after @insert_at). Default if not supplied is 'before'.
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="after"/>
+					<xs:enumeration value="before"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="head" type="treebank:HeadType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The @n value of the word on which this token depends.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute ref="xml:lang" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Language code for the text in this word. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dir" type="alphdt1:LanguageDirType" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					Text direction for the text in this word. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="relation" type="treebank:RelationType" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Relationship(s) between the word and its head. 
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="display" type="xs:string" use="optional"></xs:attribute>
+		<xs:anyAttribute namespace="##any" processContents="lax"/>
+	</xs:complexType>
+	
 
 	<!-- Word identifier attribute -->
 	<xs:simpleType name="WordIdType">
