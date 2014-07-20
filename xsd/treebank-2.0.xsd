@@ -319,7 +319,7 @@
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="insert_dir" fixed="before">
+		<xs:attribute name="insert_dir" default="before">
 			<xs:annotation>
 				<xs:documentation>
 					The direction from the insertion point supplied in @insert_at that the token should be inserted 
