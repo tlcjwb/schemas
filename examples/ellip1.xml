@@ -40,7 +40,7 @@
         <word n="1-16" lemma="exercitus" head="1-18" relation="aldt:SBJ">exercitus</word>
         <word n="1-17" lemma="noster" head="1-16" relation="aldt:ATR">noster</word>
         <word n="1-18" lemma="adduco" head="1-8" relation="aldt:OBJ">adduceretur</word>
-        <atok n="1-19" lemma="fio" head="1-19" insert_at="1-1" relation="aldt:PRED" display="fiebat" type="ellipses"/>
-        <atok n="1-20" lemma="certus" head="1-20" insert_at="1-1" relation="aldt:PNOM" display="certior" type="ellipses"/>
+        <atok n="1-19" lemma="fio" head="1-0" insert_at="1-1" relation="aldt:PRED" display="fiebat" type="ellipsis"/>
+        <atok n="1-20" lemma="certus" head="1-19" insert_at="1-19" insert_dir="after" relation="aldt:PNOM" display="certior" type="ellipsis"/>
     </sentence>
 </treebank>
