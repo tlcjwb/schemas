@@ -1,0 +1,46 @@
+<treebank xmlns="http://data.perseus.org/ns/syntax/treebank/2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:alph="http://alpheios.net/rdfvocab/inflections/1"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:sgdt="http://data.perseus.org/rdfvocab/ns/syntax/smythgrammar/1"
+    xsi:schemaLocation="http://data.perseus.org/ns/syntax/treebank/2 ../xsd/treebank-2.0.xsd"
+    version="2.0" xml:lang="grc" dir="ltr"
+    document_uri="http://data.perseus.org/collections/urn:cite:perseus:grctb.1.1"
+    prefix="doc: urn:cts:latinLit:phi0448.phi001.perseus-lat1 
+    aldt:http://data.perseus.org/rdfvocab/syntax/aldt#">
+
+    <link xlink:role="http://www.w3.org/ns/prov#has_provenance" xlink:href="provenance-URI"/>
+    <link xlink:role="http://www.w3.org/ns/prov#has_anchor" xlink:href="target-URI"/>
+    <link xlink:role="http://purl.org/dc/terms/format"
+        xlink:href="http://data.perseus.org/tagsets/syntax/aldt.json"/>
+    <link xlink:role="http://purl.org/dc/terms/format"
+        xlink:href="http://data.perseus.org/tagsets/syntax/sg.json"/>
+    <comment class="title"> Sample treebank of Caesar De Bello Gallico to show use of use of new
+        schema for ellipses </comment>
+
+    <sentence n="1" cite="doc:2.1">
+        <word n="1-1" lemma="conjuro" head="1-4" relation="aldt:ATR" alph:pofs="verb"
+            alph:mood="participle" alph:num="singular" alph:case="genitive" alph:voice="active"
+            alph:tense="present" alph:gend="neuter">Coniurandi</word>
+        <word n="1-2" lemma="hic" head="1-4" relation="aldt:ATR" alph:pofs="adj" alph:num="plural"
+            alph:case="accusative" alph:gend="feminine">has</word>
+        <word n="1-3" lemma="sum" head="1-0" relation="aldt:ExD">esse</word>
+        <word n="1-4" lemma="causa" head="1-3" relation="aldt:SBJ">causas</word>
+        <word n="1-5" lemma="primus" head="1-6" relation="aldt:AuxY">primum</word>
+        <word n="1-6" lemma="quod" head="1-3" relation="aldt:AuxC">quod</word>
+        <word n="1-7" lemma="vereor" head="1-6" relation="aldt:PNOM">vererentur</word>
+        <word n="1-8" lemma="ne" head="1-7" relation="aldt:AuxC">ne</word>
+        <word n="1-9" lemma="comma" head="1-11" relation="aldt:AuxX">,</word>
+        <word n="1-10" lemma="omnis" head="1-12" relation="aldt:ATR">omni</word>
+        <word n="1-11" lemma="paco" head="1-18" relation="aldt:ADV">pacata</word>
+        <word n="1-12" lemma="Gallia" head="1-11" relation="aldt:SBJ">Gallia</word>
+        <word n="1-13" lemma="comma" head="1-11" relation="aldt:AuxX">,</word>
+        <word n="1-14" lemma="ad" head="1-18" relation="aldt:AuxP">ad</word>
+        <word n="1-15" lemma="is" head="1-14" relation="aldt:OBJ">eos</word>
+        <word n="1-16" lemma="exercitus" head="1-18" relation="aldt:SBJ">exercitus</word>
+        <word n="1-17" lemma="noster" head="1-16" relation="aldt:ATR">noster</word>
+        <word n="1-18" lemma="adduco" head="1-8" relation="aldt:OBJ">adduceretur</word>
+        <atok n="1-19" lemma="fio" head="1-19" insert_at="1-1" relation="aldt:PRED" display="fiebat" type="ellipses"/>
+        <atok n="1-20" lemma="certus" head="1-20" insert_at="1-1" relation="aldt:PNOM" display="certior" type="ellipses"/>
+    </sentence>
+</treebank>
