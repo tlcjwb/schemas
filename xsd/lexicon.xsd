@@ -195,7 +195,7 @@
   <xs:complexType name="SemiticVerbType">
     <xs:simpleContent>
       <xs:extension base="SemiticVerbCategoryEnumeration">
-        <xs:attribute name="type" type="SemiticVerbTypeEnumeration"/>
+        <xs:attribute name="cat" type="SemiticVerbTypeEnumeration"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
