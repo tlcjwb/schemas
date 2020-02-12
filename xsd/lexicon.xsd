@@ -119,8 +119,7 @@
         <xs:element name="pofs" type="PartOfSpeechType"/>
         <xs:element name="pron" type="xs:string"/>
         <xs:element name="src" type="xs:string"/>
-        <xs:element name="verbtype" type="SemiticVerbType"/>
-        <xs:element name="nountype" type="StateTypeEnumeration"/>
+        <xs:element name="paradigm" type="ParadigmType"/>
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
@@ -192,10 +191,10 @@
     <xs:attribute ref="xml:lang"/>
   </xs:complexType>
   
-  <xs:complexType name="SemiticVerbType">
+  <xs:complexType name="ParadigmType">
     <xs:simpleContent>
-      <xs:extension base="SemiticVerbTypeEnumeration">
-        <xs:attribute name="cat" type="SemiticVerbCategoryEnumeration"/>
+      <xs:extension base="SemiticParadigmTypeEnumeration">
+        <xs:attribute name="cat" type="SemiticParadigmCategoryEnumeration"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
@@ -440,16 +439,17 @@
   </xs:simpleType>
   
   
-  <xs:simpleType name="SemiticVerbCategoryEnumeration">
+  <xs:simpleType name="SemiticParadigmCategoryEnumeration">
     <xs:restriction base="xs:string">
       <xs:enumeration value="kaylo"/>
       <xs:enumeration value="binyamin"/>
       <xs:enumeration value="conjugation"/>
+      <xs:enumeration value="state"/>
     </xs:restriction>
   </xs:simpleType>
   
-  <xs:simpleType name="SemiticVerbTypeEnumeration">
-    <xs:union memberTypes="KayloType BinyanimType SemiticConjugationType"/>
+  <xs:simpleType name="SemiticParadigmTypeEnumeration">
+    <xs:union memberTypes="KayloType BinyanimType SemiticConjugationType StateTypeEnumeration"/>
   </xs:simpleType>
   
   <xs:simpleType name="KayloType">
