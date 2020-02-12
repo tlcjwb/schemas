@@ -119,6 +119,8 @@
         <xs:element name="pofs" type="PartOfSpeechType"/>
         <xs:element name="pron" type="xs:string"/>
         <xs:element name="src" type="xs:string"/>
+        <xs:element name="verbtype" type="SemiticVerbType"/>
+        <xs:element name="nountype" type="StateTypeEnumeration"/>
       </xs:choice>
     </xs:sequence>
   </xs:complexType>
@@ -188,6 +190,14 @@
       <xs:element name="suff" type="xs:string" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute ref="xml:lang"/>
+  </xs:complexType>
+  
+  <xs:complexType name="SemiticVerbType">
+    <xs:simpleContent>
+      <xs:extension base="SemiticVerbCategoryEnumeration">
+        <xs:attribute name="type" type="SemiticVerbTypeEnumeration"/>
+      </xs:extension>
+    </xs:simpleContent>
   </xs:complexType>
 
   <!-- Enumerated types -->
@@ -426,6 +436,90 @@
       <xs:enumeration value="deponent"/>
       <xs:enumeration value="semideponent"/>
       <xs:enumeration value="perfect definite"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  
+  <xs:simpleType name="SemiticVerbCategoryEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="kaylo"/>
+      <xs:enumeration value="binyamin"/>
+      <xs:enumeration value="conjugation"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="SemiticVerbTypeEnumeration">
+    <xs:union memberTypes="KayloType BinyanimType SemiticConjugationType"/>
+  </xs:simpleType>
+  
+  <xs:simpleType name="KayloType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="pʿal"/>
+      <xs:enumeration value="ethpʿel"/>
+      <xs:enumeration value="paʿʿel"/>
+      <xs:enumeration value="ethpaʿʿal"/>
+      <xs:enumeration value="aphʿel"/>
+      <xs:enumeration value="ettaphʿal"/>
+      <xs:enumeration value="saphʿel"/>
+      <xs:enumeration value="estaphʿal"/>
+      <xs:enumeration value="shaphʿel"/>
+      <xs:enumeration value="eshtaphʿal"/>
+      <xs:enumeration value="taphʿel"/>
+      <xs:enumeration value="ettaphʿal (pass. of Taphʿel)"/>
+      <xs:enumeration value="palpel"/>
+      <xs:enumeration value="pawʿel"/>
+      <xs:enumeration value="ethpawʿal"/>
+      <xs:enumeration value="payʿel"/>
+      <xs:enumeration value="ethpayʿal"/>
+      <xs:enumeration value="pamʿel"/>
+      <xs:enumeration value="parʿel"/>
+      <xs:enumeration value="ethparʿal"/>
+      <xs:enumeration value="palpal"/>
+      <xs:enumeration value="ethpalpal"/>
+      <xs:enumeration value="p"/>
+      <xs:enumeration value="ethp"/>
+      <xs:enumeration value="paʿli"/>
+      <xs:enumeration value="ethpaʿli"/>
+      <xs:enumeration value="unspecified"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="BinyanimType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="paʿal"/>
+      <xs:enumeration value="piʿel"/>
+      <xs:enumeration value="hifʿil"/>
+      <xs:enumeration value="nifʿal"/>
+      <xs:enumeration value="puʿal"/>
+      <xs:enumeration value="hufʿal"/>
+      <xs:enumeration value="hitpaʿel"/>
+      <xs:enumeration value="hitpuʿal"/>
+      <xs:enumeration value="unspecified"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="SemiticConjugationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="peʿal"/>
+      <xs:enumeration value="paʿʿel"/>
+      <xs:enumeration value="hafʿel"/>
+      <xs:enumeration value="peʿil"/>
+      <xs:enumeration value="puʿʿal"/>
+      <xs:enumeration value="hofʿal"/>
+      <xs:enumeration value="hitpeʿel"/>
+      <xs:enumeration value="hitpaʿʿal"/>
+      <xs:enumeration value="hitafʿal"/>
+      <xs:enumeration value="unspecified"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="StateTypeEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="absolute"/>
+      <xs:enumeration value="construct"/>
+      <xs:enumeration value="determined"/>
+      <xs:enumeration value="absolute and construct"/>
+      <xs:enumeration value="unspecified"/>
     </xs:restriction>
   </xs:simpleType>
 
