@@ -449,7 +449,7 @@
   </xs:simpleType>
   
   <xs:simpleType name="SemiticParadigmTypeEnumeration">
-    <xs:union memberTypes="KayloType BinyanimType SemiticConjugationType StateTypeEnumeration"/>
+    <xs:union memberTypes="KayloType BinyanimType AramaicConjugationType StateTypeEnumeration"/>
   </xs:simpleType>
   
   <xs:simpleType name="KayloType">
@@ -498,7 +498,7 @@
     </xs:restriction>
   </xs:simpleType>
   
-  <xs:simpleType name="SemiticConjugationType">
+  <xs:simpleType name="AramaicConjugationType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="peʿal"/>
       <xs:enumeration value="paʿʿel"/>
